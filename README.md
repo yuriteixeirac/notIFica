@@ -1,4 +1,5 @@
-# Comunica IFCM
+# notIFica
+
 Uma API que registra postagens e comunicados de alunos e servidores para display em carrossel de conteúdo via TVs disponibilizadas pelo campus.
 
 Pensado para melhorar a ala de comunicação da escola em meio a proibição de celulares.
