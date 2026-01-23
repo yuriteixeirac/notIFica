@@ -1,8 +1,6 @@
 from pathlib import Path
 import os, dotenv
 
-dotenv.load_dotenv()
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
@@ -62,16 +60,13 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'comunicaif',
-        'USER': 'yuri',
-        'PASSWORD': '18102007',
-        'HOST': 'localhost',
+        'NAME': 'notifica',
+        'USER': 'root',
+        'PASSWORD': 'labinfo',
+        'HOST': 'db', # db for docker
         'PORT': 3306
     }
 }
-
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
 
 AUTH_PASSWORD_VALIDATORS = [
     {

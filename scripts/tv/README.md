@@ -18,6 +18,6 @@ crontab -e
 
 Com o editor aberto, digite a expressão:
 ```
-@reboot /usr/bin/python3 ~/aplicacao/tv/on_boot.py
+@reboot /usr/bin/python3 ~/aplicacao/scripts/tv/on_boot.py
 ```
 Essa asserção significa que a cada inicialização do aparelho, o navegador iniciará com a aplicação aberta, evitando configuração manual.

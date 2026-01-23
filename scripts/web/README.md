@@ -20,7 +20,7 @@ crontab -e
 ```
 Com o editor aberto, digite a expressão:
 ```
-0 */8 * * * /aplicacao/.venv/bin/python3 aplicacao/web/scrape.py
+0 */8 * * * /aplicacao/.venv/bin/python3 aplicacao/scripts/web/scheduled_crawler.py
 ```
 
 A expressão significa que, em um ciclo diário, 3 (três) vezes ao dia, o script será executado.

@@ -1,13 +1,12 @@
 from rest_framework.views import APIView
-from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-
+from django.contrib.auth import authenticate
 import requests
-
-from ..models import Usuario
+from app.models import Usuario
 
 SUAP_API = "https://suap.ifrn.edu.br/api"
+
 
 class Login(APIView):
     def post(self, request):

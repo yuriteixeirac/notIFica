@@ -1,10 +1,12 @@
 from google import genai
-import dotenv, os
+import dotenv
+import os
 
 dotenv.load_dotenv()
 CLIENT = genai.Client(
       api_key=os.getenv("GEMINI_API_KEY")
 )
+
 
 def validar_postagem(usuario, postagem):
         if usuario.is_authorized:

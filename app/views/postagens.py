@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from ..serializers import PostagemSerializer
-from ..models import Usuario, Postagem
+from app.models import Usuario, Postagem
 
 from ..services.post_authorization import validar_postagem
 from ..services.image_upload import upload

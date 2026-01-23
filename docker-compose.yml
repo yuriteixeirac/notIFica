@@ -1,37 +1,42 @@
 services:
-  mysql:
-    image: mysql:8.0.44-debian
+  db:
+    image: mysql/mysql-server:latest
 
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
-      interval: 5s
-      timeout: 3s
-      retries: 20
-      start_period: 10s
-  
+    # healthcheck:
+    #   test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
+    #   interval: 5s
+    #   timeout: 3s
+    #   retries: 20
+    #   start_period: 10s
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 18102007
-      MYSQL_DATABASE: comunicaif
-  
-  app:
+      MYSQL_DATABASE: "notifica"
+      MYSQL_ROOT_PASSWORD: "18102007"
+    ports:
+      - '3306:3306'
+    volumes:
+      - /var/lib/mysql
+      
+  django:
     build: ./
     depends_on:
-      mysql:
+      db:
         condition: service_healthy
 
     ports:
-      - 8080:8080
+      - '8000:8000'
 
     environment:
-      - GEMINI_API_KEY=
-      - CLOUD_NAME=
-      - API_SECRET=
-      - API_KEY=
+      - SECRET_KEY=${SECRET_KEY}
 
-      - DB_HOST=mysql
-      - DB_NAME=comunicaif
-      - DB_USER=root
-      - DB_PASSWORD=18102007
-      - DB_PORT=3306
-    
-    command: sh -c "python3 manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8080"
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      
+      # Super usuário provisório
+      - MATRICULA=${MATRICULA}
+      - SENHA=${SENHA}
+
+    command: sh -c "python3 manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000"

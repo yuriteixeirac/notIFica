@@ -1,12 +1,12 @@
-from ..serializers import NoticiaSerializer
-from ..models import Usuario, Noticia
-from ..services.image_upload import upload
-
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from app.serializers import NoticiaSerializer
+from app.models import Usuario, Noticia
+from app.services.image_upload import upload
+
 
 class Noticias(APIView):
     authentication_classes = [TokenAuthentication]
@@ -57,9 +57,9 @@ class Noticias(APIView):
             titulo=noticia["titulo"],
             sumario=noticia["sumario"],
             link=noticia["link"],
-            disponivel=noticia["disponivel"],
+            em_display=noticia["em_display"],
             imagem=imagem,
-            automatizado=noticia["automatizado"],
+            automatizada=noticia["automatizada"],
         )
 
 
